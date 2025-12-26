@@ -62,8 +62,22 @@ class TextExtractor {
 
                 is Element -> {
                     val tagName = node.tagName().lowercase()
-
                     when {
+                        isBlockElement(tagName) -> {
+                            // Add paragraph breaks
+                            if (text.isNotEmpty() && !text.endsWith("\n\n")) {
+                                text.append("\n\n")
+                            }
+
+                            // Recursively process child elements
+                            extractTextFromElement(node, text)
+
+                            // Ensure paragraph ends with line breaks
+                            if (text.isNotEmpty() && !text.endsWith("\n\n")) {
+                                text.append("\n\n")
+                            }
+                        }
+
                         tagName == "br" -> text.append("\n")
 
                         else -> extractTextFromElement(node, text)
@@ -72,6 +86,15 @@ class TextExtractor {
             }
         }
     }
+
+    /**
+     * Checks if an HTML tag is a block-level element that should create paragraph breaks.
+     */
+    private fun isBlockElement(tagName: String): Boolean = tagName in setOf(
+        "p", "div", "h1", "h2", "h3", "h4", "h5", "h6",
+        "blockquote", "pre", "ul", "ol", "li", "table", "tr",
+        "section", "article", "header", "footer"
+    )
 
     /**
      * Cleans up excessive whitespace
