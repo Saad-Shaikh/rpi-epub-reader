@@ -40,7 +40,7 @@ class EpubParser {
      * @return parsed EpubBook object
      * @throws EpubParsingException if parsing fails
      */
-    fun parse(inputStream: java.io.InputStream): EpubBook = runCatching {
+    private fun parse(inputStream: java.io.InputStream): EpubBook = runCatching {
         val epublibBook = EpubReader().readEpub(inputStream)
 
         val metadata = extractMetadata(epublibBook)

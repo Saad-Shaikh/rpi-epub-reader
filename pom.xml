@@ -19,6 +19,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <kotlin.version>1.9.22</kotlin.version>
         <epublib.version>3.1</epublib.version>
+        <jsoup.version>1.17.2</jsoup.version>
         <slf4j.version>2.0.9</slf4j.version>
         <logback.version>1.4.14</logback.version>
         <junit.version>4.13.2</junit.version>
@@ -44,6 +45,13 @@
             <groupId>nl.siegmann.epublib</groupId>
             <artifactId>epublib-core</artifactId>
             <version>${epublib.version}</version>
+        </dependency>
+
+        <!-- JSoup HTML Parser -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
         </dependency>
 
         <!-- SLF4J API -->

@@ -11,6 +11,10 @@ data class Chapter(
     val sequenceNumber: Int,
     var content: ByteArray? = null // Mutable for lazy loading
 ) {
+    fun isContentLoaded(): Boolean {
+        return content?.isNotEmpty() ?: false
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
